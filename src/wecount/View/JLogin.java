@@ -5,16 +5,18 @@
  */
 package wecount.View;
 
+import wecount.Controller.Koneksi;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import wecount.Model.Register;
+import wecount.Model.Autentikasi;
 
 /**
  *
@@ -51,8 +53,8 @@ public class JLogin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jUsernameLogin = new javax.swing.JTextField();
-        jPasswordLogin = new javax.swing.JPasswordField();
+        tfUsernameLogin = new javax.swing.JTextField();
+        tfPasswordLogin = new javax.swing.JPasswordField();
         jBtnLogin = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,16 +88,16 @@ public class JLogin extends javax.swing.JFrame {
 
         jLabel4.setText("Password");
 
-        jUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
+        tfUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jUsernameLoginActionPerformed(evt);
+                tfUsernameLoginActionPerformed(evt);
             }
         });
 
-        jPasswordLogin.setToolTipText("");
-        jPasswordLogin.addActionListener(new java.awt.event.ActionListener() {
+        tfPasswordLogin.setToolTipText("");
+        tfPasswordLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordLoginActionPerformed(evt);
+                tfPasswordLoginActionPerformed(evt);
             }
         });
 
@@ -120,8 +122,8 @@ public class JLogin extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jUsernameLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(jPasswordLogin)))
+                            .addComponent(tfUsernameLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(tfPasswordLogin)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(jBtnLogin)))
@@ -133,11 +135,11 @@ public class JLogin extends javax.swing.JFrame {
                 .addGap(142, 142, 142)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jUsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfUsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPasswordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addComponent(jBtnLogin)
                 .addContainerGap(146, Short.MAX_VALUE))
@@ -171,7 +173,7 @@ public class JLogin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,10 +199,10 @@ public class JLogin extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNama, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(283, Short.MAX_VALUE))
+                            .addComponent(tfNama)
+                            .addComponent(tfUsername)
+                            .addComponent(tfPassword))))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,13 +254,13 @@ public class JLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameLoginActionPerformed
-        
-    }//GEN-LAST:event_jUsernameLoginActionPerformed
+    private void tfUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameLoginActionPerformed
+
+    }//GEN-LAST:event_tfUsernameLoginActionPerformed
 
     private void jBtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLoginActionPerformed
-        String username = jUsernameLogin.getText();
-        char[] password = jPasswordLogin.getPassword();
+        String username = tfUsernameLogin.getText();
+        String password = String.valueOf(tfPasswordLogin.getPassword());
          if(username.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
         }else{
@@ -266,23 +268,19 @@ public class JLogin extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_jBtnLoginActionPerformed
 
-    private void jPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordLoginActionPerformed
+    private void tfPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordLoginActionPerformed
+    }//GEN-LAST:event_tfPasswordLoginActionPerformed
     
     public String getMD5(String input){
          try { 
-  
             // Static getInstance method is called with hashing MD5 
-            MessageDigest md = MessageDigest.getInstance("MD5"); 
-  
+            MessageDigest md = MessageDigest.getInstance("MD5");   
             // digest() method is called to calculate message digest 
             //  of an input digest() return array of byte 
-            byte[] messageDigest = md.digest(input.getBytes()); 
-  
+            byte[] messageDigest = md.digest(input.getBytes());   
             // Convert byte array into signum representation 
-            BigInteger no = new BigInteger(1, messageDigest); 
-  
+            BigInteger no = new BigInteger(1, messageDigest);  
             // Convert message digest into hex value 
             String hashtext = no.toString(16); 
             while (hashtext.length() < 32) { 
@@ -290,26 +288,55 @@ public class JLogin extends javax.swing.JFrame {
             } 
             return hashtext; 
         }  
-  
         // For specifying wrong message digest algorithms 
         catch (NoSuchAlgorithmException e) { 
             throw new RuntimeException(e); 
         } 
     }
+    public void resetTextField(){
+        tfNama.setText("");
+        tfUsername.setText("");
+        tfPassword.setText("");
+        tfAlamat.setText("");
+        tfNoTelp.setText("");
+    }
+    
+    public boolean cekUsername(String username){
+        String query = "SELECT username FROM tb_akun WHERE username = '(?)'";
+        String usernameCheck = "";
+        try{      
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, "%"+username+"%");
+        ResultSet rs = ps.executeQuery();
+        usernameCheck = rs.getString("username");
+        ps.close();
+        rs.close();
+        }catch(SQLException e){
+            Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
+        }
+        if(usernameCheck.equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-
         String nama = tfNama.getText();
         String username = tfUsername.getText();
         String password = getMD5(String.valueOf(tfPassword.getPassword()));
         String alamat = tfAlamat.getText();
-        String noTelp = tfNoTelp.getText();
+        String noTelp = tfNoTelp.getText();        
         if(nama.equals("") || username.equals("") || password.equals("") || alamat.equals("") || noTelp.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
+        }else if(!cekUsername(username)){
+            JOptionPane.showMessageDialog(this, "Username sudah ada !");
+            tfUsername.setText("");
         }else{
-            Register regist = new Register(nama,username,password,alamat,noTelp);
+            Autentikasi regist = new Autentikasi(nama,username,password,alamat,noTelp);
             regist.validateRegister();
             JOptionPane.showMessageDialog(this, "Register Berhasil");
+            resetTextField();
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
@@ -369,14 +396,14 @@ public class JLogin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordLogin;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jUsernameLogin;
     private javax.swing.JTextArea tfAlamat;
     private javax.swing.JTextField tfNama;
     private javax.swing.JTextField tfNoTelp;
     private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JPasswordField tfPasswordLogin;
     private javax.swing.JTextField tfUsername;
+    private javax.swing.JTextField tfUsernameLogin;
     // End of variables declaration//GEN-END:variables
 }

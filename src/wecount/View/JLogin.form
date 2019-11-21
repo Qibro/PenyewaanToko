@@ -123,8 +123,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jUsernameLogin" pref="166" max="32767" attributes="0"/>
-                                  <Component id="jPasswordLogin" max="32767" attributes="0"/>
+                                  <Component id="tfUsernameLogin" pref="166" max="32767" attributes="0"/>
+                                  <Component id="tfPasswordLogin" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -142,12 +142,12 @@
                       <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jUsernameLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfUsernameLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPasswordLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfPasswordLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jBtnLogin" min="-2" max="-2" attributes="0"/>
@@ -167,17 +167,17 @@
                 <Property name="text" type="java.lang.String" value="Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jUsernameLogin">
+            <Component class="javax.swing.JTextField" name="tfUsernameLogin">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUsernameLoginActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUsernameLoginActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="jPasswordLogin">
+            <Component class="javax.swing.JPasswordField" name="tfPasswordLogin">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordLoginActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPasswordLoginActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBtnLogin">
@@ -206,7 +206,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -240,13 +240,13 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfNama" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <Component id="tfPassword" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <Component id="tfUsername" min="-2" pref="137" max="-2" attributes="0"/>
+                                  <Component id="tfNama" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfUsername" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfPassword" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="283" max="32767" attributes="0"/>
+                      <EmptySpace pref="156" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

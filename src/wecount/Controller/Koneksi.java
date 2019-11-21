@@ -22,7 +22,7 @@ public class Koneksi {
     private static final String DB_UNAME = "root";
     private static final String DB_PASS = "";
     
-        public static Connection wecountKoneksi(){
+        public static Connection koneksiDatabase(){
             if(conn == null){
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
