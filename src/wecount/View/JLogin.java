@@ -29,6 +29,7 @@ public class JLogin extends javax.swing.JFrame {
      */
     public JLogin() {
         initComponents();
+        setLocationRelativeTo(null);
         conn = Koneksi.koneksiDatabase();
     }
     
@@ -260,11 +261,20 @@ public class JLogin extends javax.swing.JFrame {
 
     private void jBtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLoginActionPerformed
         String username = tfUsernameLogin.getText();
-        String password = String.valueOf(tfPasswordLogin.getPassword());
-         if(username.equals("")){
+        String password = getMD5(String.valueOf(tfPasswordLogin.getPassword()));
+         if(username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
         }else{
-            JOptionPane.showMessageDialog(this, username);
+            Autentikasi auth = new Autentikasi(username,password);
+            if(auth.validateLogin()){
+                JOptionPane.showMessageDialog(this, "Login Berhasil");
+                dispose();
+                Main_Menu menu = new Main_Menu();
+                menu.setVisible(true);
+                menu.setLocationRelativeTo(null);
+            }else{
+                JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");
+            }
          }
     }//GEN-LAST:event_jBtnLoginActionPerformed
 
@@ -274,21 +284,15 @@ public class JLogin extends javax.swing.JFrame {
     
     public String getMD5(String input){
          try { 
-            // Static getInstance method is called with hashing MD5 
             MessageDigest md = MessageDigest.getInstance("MD5");   
-            // digest() method is called to calculate message digest 
-            //  of an input digest() return array of byte 
             byte[] messageDigest = md.digest(input.getBytes());   
-            // Convert byte array into signum representation 
             BigInteger no = new BigInteger(1, messageDigest);  
-            // Convert message digest into hex value 
             String hashtext = no.toString(16); 
             while (hashtext.length() < 32) { 
                 hashtext = "0" + hashtext; 
             } 
             return hashtext; 
         }  
-        // For specifying wrong message digest algorithms 
         catch (NoSuchAlgorithmException e) { 
             throw new RuntimeException(e); 
         } 
@@ -302,41 +306,45 @@ public class JLogin extends javax.swing.JFrame {
     }
     
     public boolean cekUsername(String username){
-        String query = "SELECT username FROM tb_akun WHERE username = '(?)'";
-        String usernameCheck = "";
+        String query = "SELECT * FROM tb_akun WHERE username = ?";
+        boolean isExist = false;
         try{      
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, "%"+username+"%");
+        ps.setString(1, username);
         ResultSet rs = ps.executeQuery();
-        usernameCheck = rs.getString("username");
-        ps.close();
-        rs.close();
+        if(rs.next()){
+            isExist = true;
+        }
         }catch(SQLException e){
             Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
         }
-        if(usernameCheck.equals("")){
-            return false;
-        }else{
-            return true;
-        }
+        return isExist;
     }
     
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        try{
         String nama = tfNama.getText();
         String username = tfUsername.getText();
         String password = getMD5(String.valueOf(tfPassword.getPassword()));
         String alamat = tfAlamat.getText();
-        String noTelp = tfNoTelp.getText();        
+        String noTelp = tfNoTelp.getText();
+        int cekNoTelp = Integer.parseInt(noTelp);
         if(nama.equals("") || username.equals("") || password.equals("") || alamat.equals("") || noTelp.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
-        }else if(!cekUsername(username)){
+        }else if(cekUsername(username)){
             JOptionPane.showMessageDialog(this, "Username sudah ada !");
             tfUsername.setText("");
+        }else if(noTelp.length() < 10){
+            JOptionPane.showMessageDialog(this, "Nomor Telfon min 10 Angka");
         }else{
             Autentikasi regist = new Autentikasi(nama,username,password,alamat,noTelp);
             regist.validateRegister();
             JOptionPane.showMessageDialog(this, "Register Berhasil");
             resetTextField();
+        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Nomor telfon tidak valid !");
+            tfNoTelp.setText("");
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 

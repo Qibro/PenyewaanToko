@@ -7,6 +7,7 @@ package wecount.Model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,7 @@ public class Autentikasi {
     private String alamat;
     private String noTelp;
     
-    public Autentikasi(String nama, String username, String password, String alamat, String noTelp) {
+    public Autentikasi(String nama, String username, String password, String alamat, String noTelp){
         this.nama = nama;
         this.username = username;
         this.password = password;
@@ -48,9 +49,9 @@ public class Autentikasi {
         try{
             String query = "INSERT INTO tb_akun(username,password,nama,alamat,no_telp,statusAktif,status) VALUES(?,?,?,?,?,1,1)";
             PreparedStatement ps = conn.prepareStatement(query);      
-            ps.setString(1, nama);
-            ps.setString(2, username);
-            ps.setString(3, password);
+            ps.setString(1, username);
+            ps.setString(2, password );
+            ps.setString(3, nama);
             ps.setString(4, alamat);
             ps.setString(5, noTelp);
             int hasil = ps.executeUpdate();
@@ -58,5 +59,24 @@ public class Autentikasi {
             Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
             }
         }
+    }
+    
+    public boolean validateLogin(){
+        boolean loginConfirm = false;
+        if(conn != null){
+            try{
+                String query = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";           
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, username);
+                ps.setString(2 , password);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    loginConfirm = true;
+                }
+            }catch(SQLException e){
+            Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+        return loginConfirm;
     }
 }
