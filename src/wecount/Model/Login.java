@@ -5,6 +5,8 @@
  */
 package wecount.Model;
 
+import com.mysql.jdbc.PreparedStatement;
+
 /**
  *
  * @author ACER
@@ -19,6 +21,7 @@ public class Login {
     }
     
     public void cekLogin(String username,String password){
+        
         
     }
 }

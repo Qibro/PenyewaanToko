@@ -26,7 +26,7 @@ public class Penyewa {
     }
     
     public void tambahSewaToko(){
-        
+            
     }
     
     public void bayarSewa(){
