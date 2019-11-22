@@ -160,6 +160,12 @@ public class JLogin extends javax.swing.JFrame {
         tfAlamat.setRows(5);
         jScrollPane1.setViewportView(tfAlamat);
 
+        tfNoTelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNoTelpActionPerformed(evt);
+            }
+        });
+
         btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,31 +328,36 @@ public class JLogin extends javax.swing.JFrame {
     }
     
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        try{
         String nama = tfNama.getText();
         String username = tfUsername.getText();
         String password = getMD5(String.valueOf(tfPassword.getPassword()));
         String alamat = tfAlamat.getText();
         String noTelp = tfNoTelp.getText();
-        int cekNoTelp = Integer.parseInt(noTelp);
+        String telpPatt = "\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d";
+        String namePatt = "^[a-zA-Z]*$";
+        String unamePatt = "[a-zA-Z_][a-zA-Z0-9_]*";
         if(nama.equals("") || username.equals("") || password.equals("") || alamat.equals("") || noTelp.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
         }else if(cekUsername(username)){
             JOptionPane.showMessageDialog(this, "Username sudah ada !");
             tfUsername.setText("");
-        }else if(noTelp.length() < 10){
-            JOptionPane.showMessageDialog(this, "Nomor Telfon min 10 Angka");
+        }else if(!noTelp.matches(telpPatt)){
+            JOptionPane.showMessageDialog(this, "Nomor telfon tidak valid !\nMIin : 10 Angka");
+        }else if(!nama.matches(namePatt)){
+            JOptionPane.showMessageDialog(this, "Nama tidak valid !");
+        }else if(!username.matches(unamePatt)){
+            JOptionPane.showMessageDialog(this, "Username tidak valid !");
         }else{
             Autentikasi regist = new Autentikasi(nama,username,password,alamat,noTelp);
             regist.validateRegister();
             JOptionPane.showMessageDialog(this, "Register Berhasil");
             resetTextField();
         }
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Nomor telfon tidak valid !");
-            tfNoTelp.setText("");
-        }
     }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void tfNoTelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNoTelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNoTelpActionPerformed
 
     /**
      * @param args the command line arguments
