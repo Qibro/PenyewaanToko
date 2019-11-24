@@ -5,6 +5,11 @@
  */
 package wecount.View;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import wecount.Model.Autentikasi;
+import wecount.Model.Penyewa;
+
 /**
  *
  * @author user
@@ -14,9 +19,24 @@ public class Main_Menu extends javax.swing.JFrame {
     /**
      * Creates new form Main_Menu
      */
+    public Main_Menu(Autentikasi auth) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.auth = auth;
+    }
+    
+    public Main_Menu(Penyewa auth) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.auth = auth;
+    }
+    
     public Main_Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,105 +46,476 @@ public class Main_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        sidePanel = new javax.swing.JPanel();
+        btnToko = new javax.swing.JButton();
+        btnSewa = new javax.swing.JButton();
+        btnPengaturan = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
+        tokoSaya = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        sewaLapakToko = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        pengaturan = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jOldPassword = new javax.swing.JPasswordField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jNewPassword = new javax.swing.JPasswordField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jNewConfPass = new javax.swing.JPasswordField();
+        jSeparator5 = new javax.swing.JSeparator();
+        btnChangePassword = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        sidePanel.setBackground(new java.awt.Color(51, 51, 51));
 
-            },
-            new String [] {
-                "Nama Toko", "Lokasi", "Ukuran", "Harga", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        btnToko.setBackground(new java.awt.Color(51, 51, 51));
+        btnToko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnToko.setForeground(new java.awt.Color(204, 204, 204));
+        btnToko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnToko.setText("Toko Saya");
+        btnToko.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnToko.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTokoActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        btnSewa.setBackground(new java.awt.Color(51, 51, 51));
+        btnSewa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSewa.setForeground(new java.awt.Color(204, 204, 204));
+        btnSewa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnSewa.setText("Sewa Lapak Toko");
+        btnSewa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSewa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnSewa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSewaActionPerformed(evt);
+            }
+        });
+
+        btnPengaturan.setBackground(new java.awt.Color(51, 51, 51));
+        btnPengaturan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPengaturan.setForeground(new java.awt.Color(204, 204, 204));
+        btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnPengaturan.setText("Pengaturan");
+        btnPengaturan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPengaturan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnPengaturan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengaturanActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(51, 51, 51));
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton6.setText("x");
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton2.setText("Log Out");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+        sidePanel.setLayout(sidePanelLayout);
+        sidePanelLayout.setHorizontalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnPengaturan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnSewa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnToko, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        sidePanelLayout.setVerticalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(btnToko, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("List Toko", jPanel3);
+        mainPanel.setLayout(new java.awt.CardLayout());
 
-        jTable2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tokoSaya.setBackground(new java.awt.Color(51, 51, 51));
+        tokoSaya.setForeground(new java.awt.Color(51, 51, 51));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nama Toko", "Lokasi", "Ukuran", "Harga", "Status"
+                "Nama Toko", "Lokasi", "Ukuran", "Status Pembayaran"
+            }
+        ));
+        jTable3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable3.setRowHeight(50);
+        jTable3.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jTable3.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        jScrollPane3.setViewportView(jTable3);
+
+        javax.swing.GroupLayout tokoSayaLayout = new javax.swing.GroupLayout(tokoSaya);
+        tokoSaya.setLayout(tokoSayaLayout);
+        tokoSayaLayout.setHorizontalGroup(
+            tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 905, Short.MAX_VALUE)
+            .addGroup(tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tokoSayaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        tokoSayaLayout.setVerticalGroup(
+            tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tokoSayaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        mainPanel.add(tokoSaya, "card2");
+
+        sewaLapakToko.setBackground(new java.awt.Color(51, 51, 51));
+        sewaLapakToko.setForeground(new java.awt.Color(51, 51, 51));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Lokasi", "Ukuran", "Harga", "Status", "Sewa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jTable4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable4.setRowHeight(50);
+        jTable4.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jTable4.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        jScrollPane4.setViewportView(jTable4);
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton5.setText("Sewa Lapak");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout sewaLapakTokoLayout = new javax.swing.GroupLayout(sewaLapakToko);
+        sewaLapakToko.setLayout(sewaLapakTokoLayout);
+        sewaLapakTokoLayout.setHorizontalGroup(
+            sewaLapakTokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sewaLapakTokoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sewaLapakTokoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        sewaLapakTokoLayout.setVerticalGroup(
+            sewaLapakTokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sewaLapakTokoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(sewaLapakToko, "card3");
+
+        pengaturan.setBackground(new java.awt.Color(51, 51, 51));
+        pengaturan.setForeground(new java.awt.Color(204, 204, 255));
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel3.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel3.setText("Password Lama");
+
+        jOldPassword.setBackground(new java.awt.Color(51, 51, 51));
+        jOldPassword.setBorder(null);
+        jOldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOldPasswordActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel4.setText("Password Baru");
+
+        jNewPassword.setBackground(new java.awt.Color(51, 51, 51));
+        jNewPassword.setBorder(null);
+
+        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel5.setText("Konfirmasi Password Baru");
+
+        jNewConfPass.setBackground(new java.awt.Color(51, 51, 51));
+        jNewConfPass.setBorder(null);
+
+        btnChangePassword.setBackground(new java.awt.Color(204, 204, 204));
+        btnChangePassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnChangePassword.setForeground(new java.awt.Color(51, 51, 51));
+        btnChangePassword.setText("Ubah Password");
+        btnChangePassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jSeparator4)
+                            .addComponent(jSeparator3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jOldPassword)
+                            .addComponent(jNewPassword)
+                            .addComponent(jNewConfPass)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jNewConfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Toko Saya", jPanel2);
+        jTabbedPane1.addTab("Ubah Password", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 846, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 527, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Ubah Alamat", jPanel3);
+
+        javax.swing.GroupLayout pengaturanLayout = new javax.swing.GroupLayout(pengaturan);
+        pengaturan.setLayout(pengaturanLayout);
+        pengaturanLayout.setHorizontalGroup(
+            pengaturanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pengaturanLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        pengaturanLayout.setVerticalGroup(
+            pengaturanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pengaturanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(pengaturan, "card4");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 905, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(jPanel1, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    Autentikasi auth = new Autentikasi();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanActionPerformed
+        // TODO add your handling code here:
+        mainPanel.removeAll();
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        
+        mainPanel.add(pengaturan);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnPengaturanActionPerformed
+
+    private void btnSewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSewaActionPerformed
+        // TODO add your handling code here:
+        mainPanel.removeAll();
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        
+        mainPanel.add(sewaLapakToko);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnSewaActionPerformed
+
+    private void btnTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTokoActionPerformed
+        // TODO add your handling code here:
+        mainPanel.removeAll();
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        
+        mainPanel.add(tokoSaya);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }//GEN-LAST:event_btnTokoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        String oldPass = auth.getMD5(String.valueOf(jOldPassword.getPassword()));
+        String newPass = auth.getMD5(String.valueOf(jNewPassword.getPassword()));
+        String confPass = auth.getMD5(String.valueOf(jNewConfPass.getPassword()));
+        if(oldPass.equals("") || newPass.equals("")){
+            JOptionPane.showMessageDialog(this, "Isi field yang masih kosong");
+        }else if(!auth.getPassword().equals(oldPass)){
+            JOptionPane.showMessageDialog(this, "Password lama salah !!" + auth.getPassword() + "\n" +oldPass );
+        }else if(!newPass.equals(confPass)){
+            JOptionPane.showMessageDialog(this, "Password baru tidak sama !!");
+        }else{
+            System.out.println(auth.getUsername());
+            auth.changePassword(newPass);
+       }
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
+
+    private void jOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jOldPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,12 +553,34 @@ public class Main_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnPengaturan;
+    private javax.swing.JButton btnSewa;
+    private javax.swing.JButton btnToko;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPasswordField jNewConfPass;
+    private javax.swing.JPasswordField jNewPassword;
+    private javax.swing.JPasswordField jOldPassword;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel pengaturan;
+    private javax.swing.JPanel sewaLapakToko;
+    private javax.swing.JPanel sidePanel;
+    private javax.swing.JPanel tokoSaya;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import wecount.Model.Autentikasi;
+import wecount.Model.Penyewa;
 
 /**
  *
@@ -31,10 +32,11 @@ public class JLogin extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         conn = Koneksi.koneksiDatabase();
+        auth = new Autentikasi();
     }
     
     Connection conn;
-
+    Autentikasi auth;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,17 +247,16 @@ public class JLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,15 +268,16 @@ public class JLogin extends javax.swing.JFrame {
 
     private void jBtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLoginActionPerformed
         String username = tfUsernameLogin.getText();
-        String password = getMD5(String.valueOf(tfPasswordLogin.getPassword()));
+        String password = auth.getMD5(String.valueOf(tfPasswordLogin.getPassword()));
          if(username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
         }else{
             Autentikasi auth = new Autentikasi(username,password);
-            if(auth.validateLogin()){
+            Penyewa penyewa = auth.current();
+            if(auth.validateLogin()){    
                 JOptionPane.showMessageDialog(this, "Login Berhasil");
                 dispose();
-                Main_Menu menu = new Main_Menu();
+                Main_Menu menu = new Main_Menu(penyewa);
                 menu.setVisible(true);
                 menu.setLocationRelativeTo(null);
             }else{
@@ -288,21 +290,7 @@ public class JLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPasswordLoginActionPerformed
     
-    public String getMD5(String input){
-         try { 
-            MessageDigest md = MessageDigest.getInstance("MD5");   
-            byte[] messageDigest = md.digest(input.getBytes());   
-            BigInteger no = new BigInteger(1, messageDigest);  
-            String hashtext = no.toString(16); 
-            while (hashtext.length() < 32) { 
-                hashtext = "0" + hashtext; 
-            } 
-            return hashtext; 
-        }  
-        catch (NoSuchAlgorithmException e) { 
-            throw new RuntimeException(e); 
-        } 
-    }
+    
     public void resetTextField(){
         tfNama.setText("");
         tfUsername.setText("");
@@ -330,7 +318,7 @@ public class JLogin extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         String nama = tfNama.getText();
         String username = tfUsername.getText();
-        String password = getMD5(String.valueOf(tfPassword.getPassword()));
+        String password = auth.getMD5(String.valueOf(tfPassword.getPassword()));
         String alamat = tfAlamat.getText();
         String noTelp = tfNoTelp.getText();
         String telpPatt = "\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d";
@@ -347,9 +335,11 @@ public class JLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nama tidak valid !");
         }else if(!username.matches(unamePatt)){
             JOptionPane.showMessageDialog(this, "Username tidak valid !");
+        }else if(!alamat.matches(unamePatt)){
+            JOptionPane.showMessageDialog(this, "Alamat tidak valid !");
         }else{
             Autentikasi regist = new Autentikasi(nama,username,password,alamat,noTelp);
-            regist.validateRegister();
+            regist.validateRegister();  
             JOptionPane.showMessageDialog(this, "Register Berhasil");
             resetTextField();
         }
