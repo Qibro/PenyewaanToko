@@ -5,6 +5,8 @@
  */
 package wecount.View;
 
+import javax.swing.JOptionPane;
+import wecount.Controller.FungsiControl;
 import wecount.Controller.TableControl;
 
 /**
@@ -19,10 +21,14 @@ public class Admin extends javax.swing.JFrame {
     public Admin() {
         initComponents();
         setLocationRelativeTo(null);
-        tbListPenyewa.setModel(tc.getModel());
+        tbListPenyewa.setModel(tc.getModelPenyewa());
+        tbListLapak.setModel(tc.getModelLapak());
         tc.loadKolomPenyewa();
+        tc.loadKolomLapak();
+        tc.loadPenyewa();
     }
     
+    FungsiControl fc = new FungsiControl();
     TableControl tc = new TableControl();
     
 
@@ -51,20 +57,20 @@ public class Admin extends javax.swing.JFrame {
         listLapak = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbListLapak = new javax.swing.JTable();
         tambahLapak = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         tfUkuranPanjang = new javax.swing.JTextField();
-        tfLokasiLapak = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         tfHargaLapak = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btTambahLapak = new javax.swing.JButton();
         tfUkuranLebar = new javax.swing.JTextField();
+        cbLokasiLapak = new javax.swing.JComboBox<>();
         editLapak = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -76,8 +82,8 @@ public class Admin extends javax.swing.JFrame {
         tfEditHarga = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         btTambahLapak1 = new javax.swing.JButton();
-        cbLokasiLapak = new javax.swing.JComboBox<>();
         tfEditLebar = new javax.swing.JTextField();
+        etcbLokasiLapak = new javax.swing.JComboBox<>();
         listPenyewa = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -285,7 +291,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("LIST LAPAK");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbListLapak.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -296,7 +302,7 @@ public class Admin extends javax.swing.JFrame {
                 "Lokasi", "Ukuran", "Harga Sewa", "Status"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbListLapak);
 
         tambahLapak.setBackground(new java.awt.Color(0, 102, 102));
         tambahLapak.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TAMBAH LAPAK", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -339,6 +345,20 @@ public class Admin extends javax.swing.JFrame {
         btTambahLapak.setText("Tambahkan");
         btTambahLapak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btTambahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btTambahLapak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTambahLapakActionPerformed(evt);
+            }
+        });
+
+        cbLokasiLapak.setEditable(true);
+        cbLokasiLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cbLokasiLapak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A1", "A2", "A3", "A4" }));
+        cbLokasiLapak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLokasiLapakActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tambahLapakLayout = new javax.swing.GroupLayout(tambahLapak);
         tambahLapak.setLayout(tambahLapakLayout);
@@ -354,7 +374,6 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tambahLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(tambahLapakLayout.createSequentialGroup()
                                 .addGroup(tambahLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
@@ -371,17 +390,18 @@ public class Admin extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tfUkuranLebar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btTambahLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         tambahLapakLayout.setVerticalGroup(
             tambahLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tambahLapakLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tambahLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(cbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tambahLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfUkuranPanjang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,12 +462,12 @@ public class Admin extends javax.swing.JFrame {
         btTambahLapak1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btTambahLapak1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
 
-        cbLokasiLapak.setEditable(true);
-        cbLokasiLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cbLokasiLapak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Lokasi Lapak", "Item 2", "Item 3", "Item 4" }));
-        cbLokasiLapak.addActionListener(new java.awt.event.ActionListener() {
+        etcbLokasiLapak.setEditable(true);
+        etcbLokasiLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        etcbLokasiLapak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A1", "A2", "A3", "A4" }));
+        etcbLokasiLapak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbLokasiLapakActionPerformed(evt);
+                etcbLokasiLapakActionPerformed(evt);
             }
         });
 
@@ -481,7 +501,7 @@ public class Admin extends javax.swing.JFrame {
                                         .addComponent(tfEditHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(cbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(etcbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btTambahLapak1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -491,8 +511,8 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(editLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(cbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(etcbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(editLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfEditPanjang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
@@ -507,7 +527,7 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
                 .addComponent(btTambahLapak1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout listLapakLayout = new javax.swing.GroupLayout(listLapak);
@@ -539,7 +559,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(listLapakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(editLapak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tambahLapak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         adminPanel.add(listLapak, "card3");
@@ -839,6 +859,9 @@ public class Admin extends javax.swing.JFrame {
         adminPanel.add(listLapak);
         adminPanel.repaint();
         adminPanel.revalidate();
+        
+        tc.loadLapak();
+        tc.showLapak();
     }//GEN-LAST:event_btnListLapakActionPerformed
 
     private void btnListPenyewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPenyewaActionPerformed
@@ -852,7 +875,7 @@ public class Admin extends javax.swing.JFrame {
         adminPanel.revalidate();
         
         
-        tc.loadPenyewa();
+        
         tc.showPenyewa();
     }//GEN-LAST:event_btnListPenyewaActionPerformed
 
@@ -889,6 +912,24 @@ public class Admin extends javax.swing.JFrame {
     private void cbLokasiLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLokasiLapakActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLokasiLapakActionPerformed
+
+    private void btTambahLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTambahLapakActionPerformed
+        String lokasi = cbLokasiLapak.getSelectedItem().toString();
+        String uPanjang = tfUkuranPanjang.getText();
+        String uLebar = tfUkuranLebar.getText();
+        String ukuran = uPanjang + " x " + uLebar;
+        String hargaSewa = tfHargaLapak.getText();
+        
+        if(lokasi.equals("") || ukuran.equals("") || hargaSewa.equals("")){
+            JOptionPane.showMessageDialog(this, "Isi field yang masih kosong !");
+        }else{
+            fc.tambahLapak(ukuran, lokasi, hargaSewa);
+        }
+    }//GEN-LAST:event_btTambahLapakActionPerformed
+
+    private void etcbLokasiLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etcbLokasiLapakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etcbLokasiLapakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -939,6 +980,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbLokasiLapak;
     private javax.swing.JPanel dataAdmin;
     private javax.swing.JPanel editLapak;
+    private javax.swing.JComboBox<String> etcbLokasiLapak;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -969,7 +1011,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel listLapak;
     private javax.swing.JPanel listPenyewa;
     private javax.swing.JPanel listToko;
@@ -977,6 +1018,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel pengaturanAdmin;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JPanel tambahLapak;
+    private javax.swing.JTable tbListLapak;
     private javax.swing.JTable tbListPenyewa;
     private javax.swing.JTable tbListToko;
     private javax.swing.JTable tbListTransaksi;
@@ -987,7 +1029,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField tfEditPanjang;
     private javax.swing.JTextField tfHargaLapak;
     private javax.swing.JTextField tfJawaban;
-    private javax.swing.JTextField tfLokasiLapak;
     private javax.swing.JPasswordField tfPassBaru;
     private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUkuranLebar;

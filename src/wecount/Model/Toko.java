@@ -9,20 +9,19 @@ package wecount.Model;
  *
  * @author ACER
  */
-public class Toko extends Penyewa{
+public class Toko{
     int idToko;
     String namaToko;
     String blokToko;
-    String deskripsiToko;
-    boolean status_ketersediaan;
-    double hargaSewa;
+    String ukuranToko;
+    int status_ketersediaan;
+    int hargaSewa;
 
-    public Toko(int idToko, String namaToko, String blokToko, String deskripsiToko, boolean status_ketersediaan, double hargaSewa, String username, String password, int idPenyewa, String namaPenyewa, String alamat, String noTelp, boolean tipePembayaran, int masaSewa) {
-        super(idPenyewa,namaPenyewa, username,password, alamat, noTelp);
+    public Toko(int idToko, String namaToko, String blokToko,String ukuranToko, int hargaSewa,int status_ketersediaan) {
         this.idToko = idToko;
         this.namaToko = namaToko;
+        this.ukuranToko = ukuranToko;
         this.blokToko = blokToko;
-        this.deskripsiToko = deskripsiToko;
         this.status_ketersediaan = status_ketersediaan;
         this.hargaSewa = hargaSewa;
     }
@@ -39,11 +38,11 @@ public class Toko extends Penyewa{
         return blokToko;
     }
 
-    public String getDeskripsiToko() {
-        return deskripsiToko;
+    public String getUkuranToko() {
+        return ukuranToko;
     }
 
-    public boolean isStatus_ketersediaan() {
+    public int getStatus_ketersediaan() {
         return status_ketersediaan;
     }
 

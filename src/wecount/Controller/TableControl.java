@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import wecount.Model.Penyewa;
+import wecount.Model.Toko;
+import wecount.Model.Transaksi;
 import wecount.View.Admin;
 
 /**
@@ -22,30 +24,59 @@ import wecount.View.Admin;
  */
 public class TableControl {
 
-    public DefaultTableModel getModel() {
-        return model;
-    }
-    DefaultTableModel model = new DefaultTableModel();
+    
+    DefaultTableModel modelPenyewa,modelTransaksi,modelLapak;
     ArrayList<Penyewa> lPenyewa;
-    Connection conn = Koneksi.koneksiDatabase();;
+    ArrayList<Toko> lToko;
+    ArrayList<Transaksi> lTransaksi;
+    Connection conn;
     
     public TableControl() {
+        modelPenyewa = new DefaultTableModel();
+        modelTransaksi = new DefaultTableModel();
+        modelLapak = new DefaultTableModel();
         conn = Koneksi.koneksiDatabase();
     }
     
+    public DefaultTableModel getModelPenyewa() {
+        return modelPenyewa;
+    }
+    
+    public DefaultTableModel getModelTransaksi() {
+        return modelTransaksi;
+    }
+
+    public DefaultTableModel getModelLapak() {
+        return modelLapak;
+    }
+    
     public void loadKolomPenyewa(){
-        model.addColumn("Id Penyewa");
-        model.addColumn("Username");
-        model.addColumn("Nama Penyewa");
-        model.addColumn("Alamat");
-        model.addColumn("No Telpon");
-        model.addColumn("Status");
+        modelPenyewa.addColumn("Id Penyewa");
+        modelPenyewa.addColumn("Username");
+        modelPenyewa.addColumn("Nama Penyewa");
+        modelPenyewa.addColumn("Alamat");
+        modelPenyewa.addColumn("No Telpon");
+        modelPenyewa.addColumn("Status");
+    }
+    
+    public void loadKolomLapak(){
+        modelLapak.addColumn("Lokasi");
+        modelLapak.addColumn("Ukuran");
+        modelLapak.addColumn("Harga Sewa");
+        modelLapak.addColumn("Status");
+    }
+    
+    public void showLapak(){
+        modelPenyewa.setRowCount(0);
+        for(Toko t : lToko){
+            modelLapak.addRow(new Object[]{t.getBlokToko(),t.getUkuranToko(),t.getHargaSewa(),t.getStatus_ketersediaan()});
+        }
     }
     
     public void showPenyewa(){
-        model.setRowCount(0);
+        modelPenyewa.setRowCount(0);
         for(Penyewa p : lPenyewa){
-            model.addRow(new Object[]{p.getIdPenyewa(),p.getUsername(),p.getNama(),p.getAlamat(),p.getNoTelp()});
+            modelPenyewa.addRow(new Object[]{p.getIdPenyewa(),p.getUsername(),p.getNama(),p.getAlamat(),p.getNoTelp()});
         }
     }
     
@@ -74,4 +105,30 @@ public class TableControl {
             }
         }
     }
+    
+    public void loadLapak(){
+        if(conn !=  null){
+            try{
+                String query = "SELECT * FROM tb_toko";
+                lToko = new ArrayList<>();
+                PreparedStatement ps =  conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    int idToko = rs.getInt("id_toko");
+                    String ukuran = rs.getString("ukuran_toko");
+                    String lokasi = rs.getString("blok_toko");
+                    int hargaSewa = rs.getInt("harga_sewa");
+                    int status = rs.getInt("status_sedia");
+                    Toko toko = new Toko(idToko,"",ukuran,lokasi,hargaSewa,status);
+                    lToko.add(toko);
+                }
+                rs.close();
+                ps.close();
+            }catch(SQLException e){
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE,null,e);     
+            }
+        }
+    }
+    
+    
 }
