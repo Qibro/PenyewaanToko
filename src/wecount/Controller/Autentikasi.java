@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wecount.Model;
+package wecount.Controller;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import wecount.Controller.Koneksi;
+import wecount.Model.Penyewa;
 import wecount.View.JLogin;
 
 /**
@@ -89,7 +90,7 @@ public class Autentikasi {
         if(conn != null){
         try{
             String query = "INSERT INTO tb_akun(username,password,nama,alamat,no_telp,statusAktif,status) VALUES(?,?,?,?,?,1,1)";
-            PreparedStatement ps = conn.prepareStatement(query);      
+            PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password );
             ps.setString(3, nama);

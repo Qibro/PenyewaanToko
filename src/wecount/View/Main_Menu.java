@@ -7,7 +7,7 @@ package wecount.View;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import wecount.Model.Autentikasi;
+import wecount.Controller.Autentikasi;
 import wecount.Model.Penyewa;
 
 /**
@@ -83,10 +83,10 @@ public class Main_Menu extends javax.swing.JFrame {
         btnToko.setBackground(new java.awt.Color(51, 51, 51));
         btnToko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnToko.setForeground(new java.awt.Color(204, 204, 204));
-        btnToko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnToko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         btnToko.setText("Toko Saya");
         btnToko.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnToko.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnToko.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         btnToko.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTokoActionPerformed(evt);
@@ -96,10 +96,10 @@ public class Main_Menu extends javax.swing.JFrame {
         btnSewa.setBackground(new java.awt.Color(51, 51, 51));
         btnSewa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSewa.setForeground(new java.awt.Color(204, 204, 204));
-        btnSewa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnSewa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         btnSewa.setText("Sewa Lapak Toko");
         btnSewa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSewa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnSewa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         btnSewa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSewaActionPerformed(evt);
@@ -109,10 +109,10 @@ public class Main_Menu extends javax.swing.JFrame {
         btnPengaturan.setBackground(new java.awt.Color(51, 51, 51));
         btnPengaturan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPengaturan.setForeground(new java.awt.Color(204, 204, 204));
-        btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         btnPengaturan.setText("Pengaturan");
         btnPengaturan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPengaturan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnPengaturan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         btnPengaturan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPengaturanActionPerformed(evt);
@@ -122,10 +122,10 @@ public class Main_Menu extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(51, 51, 51));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(204, 204, 204));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         jButton6.setText("x");
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -133,11 +133,11 @@ public class Main_Menu extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         jButton2.setText("Log Out");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -262,11 +262,11 @@ public class Main_Menu extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable4);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87) - Copy.png"))); // NOI18N
         jButton5.setText("Sewa Lapak");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/Screenshot (87).png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -456,10 +456,6 @@ public class Main_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void btnPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
@@ -516,6 +512,10 @@ public class Main_Menu extends javax.swing.JFrame {
     private void jOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOldPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jOldPasswordActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
  */
 package wecount.Model;
 
+import wecount.Controller.Autentikasi;
 import java.util.ArrayList;
 
 /**
@@ -14,18 +15,23 @@ import java.util.ArrayList;
 public class Penyewa extends Autentikasi{
     int idPenyewa;
     String namaPenyewa;
+    String username;
     String alamat;
     String noTelp;
     ArrayList<Toko> listToko = new ArrayList<>();
     public Penyewa(int idPenyewa,String namaPenyewa, String username, String password, String alamat, String noTelp) {
         super(namaPenyewa,username,password,alamat,noTelp);
         this.idPenyewa = idPenyewa;
-        this.idPenyewa = idPenyewa;
+        this.username = username;
         this.namaPenyewa = namaPenyewa;
         this.alamat = alamat;
         this.noTelp = noTelp;
     }
 
+    public String getUsername() {
+        return username;
+    }
+    
     public int getIdPenyewa() {
         return idPenyewa;
     }
