@@ -17,32 +17,12 @@ public class Admin {
         this.username = username;
         this.password = password;
     }
-    
-    public void tambahPenyewa(){
-        
+
+    public String getUsername() {
+        return username;
     }
-    
-    public void tambahToko(){
-        
-    }
-    
-    public void updateKetersediaanToko(){
-        
-    }
-    
-    public void updateHargaSewa(){
-        
-    }
-    
-    public void lihatDaftarPenyewa(){
-        
-    }
-    
-    public void lihatDaftarToko(){
-        
-    }
-    
-    public void lihatTop5Penyewa(){
-        
-    }
+
+    public String getPassword() {
+        return password;
+    }   
 }

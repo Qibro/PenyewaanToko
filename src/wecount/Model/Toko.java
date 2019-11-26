@@ -9,21 +9,33 @@ package wecount.Model;
  *
  * @author ACER
  */
-public class Toko{
+public class Toko extends Penyewa{
     int idToko;
     String namaToko;
-    String blokToko;
+    String lokasi;
     String ukuranToko;
     int status_ketersediaan;
-    int hargaSewa;
+    String hargaSewa;
 
-    public Toko(int idToko, String namaToko, String blokToko,String ukuranToko, int hargaSewa,int status_ketersediaan) {
+    public Toko(int idToko,int idPenyewa,String namaToko, String lokasi,String ukuranToko, String hargaSewa) {
+        super();
         this.idToko = idToko;
         this.namaToko = namaToko;
         this.ukuranToko = ukuranToko;
-        this.blokToko = blokToko;
+        this.lokasi = lokasi;
         this.status_ketersediaan = status_ketersediaan;
         this.hargaSewa = hargaSewa;
+    }
+    
+     public Toko(int idToko , String lokasi,String ukuranToko, String hargaSewa) {
+        this.idToko = idToko;
+        this.ukuranToko = ukuranToko;
+        this.lokasi = lokasi;
+        this.hargaSewa = hargaSewa;
+    }
+    
+    public Toko(){
+        
     }
 
     public int getIdToko() {
@@ -34,8 +46,8 @@ public class Toko{
         return namaToko;
     }
 
-    public String getBlokToko() {
-        return blokToko;
+    public String getLokasi() {
+        return lokasi;
     }
 
     public String getUkuranToko() {
@@ -46,7 +58,7 @@ public class Toko{
         return status_ketersediaan;
     }
 
-    public double getHargaSewa() {
+    public String getHargaSewa() {
         return hargaSewa;
     }
     

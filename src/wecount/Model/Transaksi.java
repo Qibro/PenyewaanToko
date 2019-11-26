@@ -9,26 +9,38 @@ package wecount.Model;
  *
  * @author ACER
  */
-public class Transaksi {
-    String idTransaksi;
-    String idPegawai;
-    String jenisTransaksi;
+public class Transaksi extends Toko{
+    int idTransaksi;
+    int idToko;
+    int idPenyewa;
+    String jumlahTransaksi;
+    String tanggalTranskasi;
 
-    public Transaksi(String idTransaksi, String idPegawai, String jenisTransaksi) {
+    public Transaksi(int idTransaksi,int idToko, int idPenyewa, String jumlahTransaksi, String tanggalTranskasi) {
         this.idTransaksi = idTransaksi;
-        this.idPegawai = idPegawai;
-        this.jenisTransaksi = jenisTransaksi;
+        this.idToko = idToko;
+        this.idPenyewa = idPenyewa;
+        this.jumlahTransaksi = jumlahTransaksi;
+        this.tanggalTranskasi = tanggalTranskasi;
+    }
+
+    public int getIdTransaksi() {
+        return idTransaksi;
+    }
+
+    public int getIdToko() {
+        return idToko;
+    }
+
+    public int getIdPenyewa() {
+        return idPenyewa;
     }
     
-    public void prosesTransaksi(){
-        
+    public String getJumlahTransaksi() {
+        return jumlahTransaksi;
     }
-    
-    public void dendaSewa(){
-        
-    }
-    
-    public void cetakBuktiTransaksi(){
-        
+
+    public String getTanggalTranskasi() {
+        return tanggalTranskasi;
     }
 }

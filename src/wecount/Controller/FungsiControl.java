@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import wecount.View.Admin;
-import wecount.View.JLogin;
+import wecount.View.ViewAdmin;
+import wecount.View.ViewLogin;
 
 /**
  *
@@ -22,7 +22,7 @@ public class FungsiControl {
     Connection conn;
 
     public FungsiControl() {
-        conn = Koneksi.koneksiDatabase();
+        conn = KoneksiControl.koneksiDatabase();
     }
     TableControl tc = new TableControl();
     
@@ -35,7 +35,7 @@ public class FungsiControl {
                 ps.setString(2, lokasi);
                 ps.setString(3, harga_sewa);
             }catch(SQLException e){
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE,null,e);
+                Logger.getLogger(ViewAdmin.class.getName()).log(Level.SEVERE,null,e);
         }   
     }
 }
@@ -54,7 +54,7 @@ public class FungsiControl {
                 tc.loadLapak();
                 tc.showLapak();
             }catch(SQLException e){
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE,null,e);
+                Logger.getLogger(ViewAdmin.class.getName()).log(Level.SEVERE,null,e);
         }
       }
     }
