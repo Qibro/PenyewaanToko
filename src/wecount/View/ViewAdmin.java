@@ -247,21 +247,24 @@ public class ViewAdmin extends javax.swing.JFrame {
         tbListToko.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tbListToko.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nama Toko", "Nama Penyewa", "Durasi Sewa", "Tanggal Mulai", "Tanggal Akhir", "Harga Sewa", "Bayar", "Kurang", "Denda"
+                "ID Toko", "ID Penyewa", "Nama Toko", "Lokasi ", "Ukuran", "Harga Sewa", "Status Bayar"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(tbListToko);
-        if (tbListToko.getColumnModel().getColumnCount() > 0) {
-            tbListToko.getColumnModel().getColumn(2).setHeaderValue("Pengeluaran");
-            tbListToko.getColumnModel().getColumn(3).setHeaderValue("Pendapatan Awal");
-            tbListToko.getColumnModel().getColumn(4).setHeaderValue("Pendapatan Akhir");
-        }
 
         javax.swing.GroupLayout listTokoLayout = new javax.swing.GroupLayout(listToko);
         listToko.setLayout(listTokoLayout);
@@ -932,7 +935,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         String uLebar = tfUkuranLebar.getText();
         String ukuran = uPanjang + " x " + uLebar;
         String hargaSewa = tfHargaLapak.getText();
-        
         if(lokasi.equals("") || ukuran.equals("") || hargaSewa.equals("")){
             JOptionPane.showMessageDialog(this, "Isi field yang masih kosong !");
         }else{
@@ -945,10 +947,23 @@ public class ViewAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_etcbLokasiLapakActionPerformed
 
     private void btUbahLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahLapakActionPerformed
-        int selectedRow = tbListPenyewa.getSelectedRow();
-        int idLapak = Integer.parseInt(tc.getModelLapak().getValueAt(selectedRow, 0).toString());
-        JOptionPane.showMessageDialog(this, idLapak);
-        
+        int id = 0;
+        int selectedRow = tbListLapak.getSelectedRow();
+        id = Integer.parseInt(tc.getModelLapak().getValueAt(selectedRow, 0).toString());
+        System.out.println(id);
+        String lokasi = etcbLokasiLapak.getSelectedItem().toString();
+        String uPanjang = tfEditPanjang.getText();
+        String uLebar = tfEditLebar.getText();
+        String ukuran = uPanjang + " x " + uLebar;
+        String hargaSewa = tfEditHarga.getText();
+        if(lokasi.equals("") || ukuran.equals("") || hargaSewa.equals("") || id == 0){
+            JOptionPane.showMessageDialog(this, "Isi field yang masih kosong !");
+        }else{
+           fc.ubahDataLapak(id, ukuran, lokasi, hargaSewa);
+           JOptionPane.showMessageDialog(this, "Data berhasil diubah");
+           tc.loadLapak();
+           tc.showLapak();
+        }
     }//GEN-LAST:event_btUbahLapakActionPerformed
 
     /**

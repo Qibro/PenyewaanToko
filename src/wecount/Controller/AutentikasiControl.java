@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,6 +105,8 @@ public class AutentikasiControl {
         int id = 0;
         if(conn != null){
             try{
+                LocalDate date = LocalDate.now();
+                
                 String query = "SELECT id_akun FROM tb_akun WHERE username = ?";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, username);

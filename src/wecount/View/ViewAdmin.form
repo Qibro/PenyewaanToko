@@ -317,16 +317,14 @@
                       <Font name="Arial" size="12" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="4">
-                        <Column editable="true" title="Nama Toko" type="java.lang.Object"/>
-                        <Column editable="true" title="Nama Penyewa" type="java.lang.Object"/>
-                        <Column editable="true" title="Durasi Sewa" type="java.lang.Object"/>
-                        <Column editable="true" title="Tanggal Mulai" type="java.lang.Object"/>
-                        <Column editable="true" title="Tanggal Akhir" type="java.lang.Object"/>
-                        <Column editable="true" title="Harga Sewa" type="java.lang.Object"/>
-                        <Column editable="true" title="Bayar" type="java.lang.Object"/>
-                        <Column editable="true" title="Kurang" type="java.lang.Object"/>
-                        <Column editable="true" title="Denda" type="java.lang.Object"/>
+                      <Table columnCount="7" rowCount="4">
+                        <Column editable="true" title="ID Toko" type="java.lang.Integer"/>
+                        <Column editable="true" title="ID Penyewa" type="java.lang.Integer"/>
+                        <Column editable="true" title="Nama Toko" type="java.lang.Integer"/>
+                        <Column editable="true" title="Lokasi " type="java.lang.String"/>
+                        <Column editable="true" title="Ukuran" type="java.lang.String"/>
+                        <Column editable="true" title="Harga Sewa" type="java.lang.String"/>
+                        <Column editable="true" title="Status Bayar" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -342,17 +340,7 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Pengeluaran"/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Pendapatan Awal"/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Pendapatan Akhir"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>

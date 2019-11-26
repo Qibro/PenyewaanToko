@@ -127,7 +127,7 @@ public class TableControl {
     public void loadLapak(){
         if(conn !=  null){
             try{
-                String query = "SELECT * FROM tb_toko";
+                String query = "SELECT * FROM tb_toko WHERE status_beli = 0";
                 lToko = new ArrayList<>();
                 PreparedStatement ps =  conn.prepareStatement(query);
                 ResultSet rs = ps.executeQuery();
