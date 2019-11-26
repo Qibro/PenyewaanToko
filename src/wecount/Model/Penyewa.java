@@ -51,16 +51,4 @@ public class Penyewa extends Autentikasi{
     public ArrayList<Toko> getListToko() {
         return listToko;
     }    
-    
-    public void tambahSewaToko(){
-        
-    }
-    
-    public void bayarSewa(){
-        
-    }
-    
-    public void perpanjangSewa(){
-        
-    }
 }

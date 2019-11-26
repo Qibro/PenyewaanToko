@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import wecount.Controller.Autentikasi;
 import wecount.Model.Penyewa;
 
-/**
+/** 
  *
  * @author user
  */
@@ -273,15 +273,22 @@ public class JLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Isi Field yang masih Kosong");
         }else{
             Autentikasi auth = new Autentikasi(username,password);
-            Penyewa penyewa = auth.current();
-            if(auth.validateLogin()){    
-                JOptionPane.showMessageDialog(this, "Login Berhasil");
+            if(auth.cekAdmin()){
                 dispose();
-                Main_Menu menu = new Main_Menu(penyewa);
-                menu.setVisible(true);
-                menu.setLocationRelativeTo(null);
+                Admin admin = new Admin();
+                admin.setVisible(true);
+                admin.setLocationRelativeTo(null);
             }else{
-                JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");
+                Penyewa penyewa = auth.current();
+                if(auth.validateLogin()){    
+                    JOptionPane.showMessageDialog(this, "Login Berhasil");
+                    dispose();
+                    Main_Menu menu = new Main_Menu(penyewa);
+                    menu.setVisible(true);
+                    menu.setLocationRelativeTo(null);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");
+                }
             }
          }
     }//GEN-LAST:event_jBtnLoginActionPerformed
@@ -290,6 +297,7 @@ public class JLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPasswordLoginActionPerformed
     
+
     
     public void resetTextField(){
         tfNama.setText("");
@@ -339,7 +347,8 @@ public class JLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Alamat tidak valid !");
         }else{
             Autentikasi regist = new Autentikasi(nama,username,password,alamat,noTelp);
-            regist.validateRegister();  
+            regist.validateRegisterAkun();
+            regist.validateRegisterPenyewa(username);
             JOptionPane.showMessageDialog(this, "Register Berhasil");
             resetTextField();
         }

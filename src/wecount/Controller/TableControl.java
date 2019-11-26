@@ -30,12 +30,17 @@ public class TableControl {
     ArrayList<Toko> lToko;
     ArrayList<Transaksi> lTransaksi;
     Connection conn;
-    
+    int countLapak;
     public TableControl() {
         modelPenyewa = new DefaultTableModel();
         modelTransaksi = new DefaultTableModel();
         modelLapak = new DefaultTableModel();
         conn = Koneksi.koneksiDatabase();
+        this.countLapak = 0;
+    }
+
+    public int getCountLapak() {
+        return countLapak;
     }
     
     public DefaultTableModel getModelPenyewa() {
@@ -71,6 +76,7 @@ public class TableControl {
         for(Toko t : lToko){
             modelLapak.addRow(new Object[]{t.getBlokToko(),t.getUkuranToko(),t.getHargaSewa(),t.getStatus_ketersediaan()});
         }
+        countLapak++;
     }
     
     public void showPenyewa(){
@@ -83,14 +89,12 @@ public class TableControl {
     public void loadPenyewa(){
         if(conn !=  null){
             try{
-                String query = "SELECT * FROM tb_akun";
+                String query = "SELECT * FROM tb_penyewa";
                 lPenyewa = new ArrayList<>();
                 PreparedStatement ps =  conn.prepareStatement(query);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    int id = rs.getInt("id_akun");
-                    String username = rs.getString("username");
-                    String password = rs.getString("password");
+                    int id = rs.getInt("id_penyewa");
                     String nama = rs.getString("nama");
                     String alamat = rs.getString("alamat");
                     String noTelp = rs.getString("no_telp");
@@ -119,7 +123,7 @@ public class TableControl {
                     String lokasi = rs.getString("blok_toko");
                     int hargaSewa = rs.getInt("harga_sewa");
                     int status = rs.getInt("status_sedia");
-                    Toko toko = new Toko(idToko,"",ukuran,lokasi,hargaSewa,status);
+                    Toko toko = new Toko(idToko,"",lokasi,ukuran,hargaSewa,status);
                     lToko.add(toko);
                 }
                 rs.close();

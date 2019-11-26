@@ -53,7 +53,7 @@ public class Autentikasi {
         return noTelp;
     }
     
-    public String getMD5(String input){
+    public static String getMD5(String input){
          try { 
             MessageDigest md = MessageDigest.getInstance("MD5");   
             byte[] messageDigest = md.digest(input.getBytes());   
@@ -86,21 +86,58 @@ public class Autentikasi {
         conn = Koneksi.koneksiDatabase();
     }
     
-    public void validateRegister(){
+    public void validateRegisterAkun(){
         if(conn != null){
         try{
-            String query = "INSERT INTO tb_akun(username,password,nama,alamat,no_telp,statusAktif,status) VALUES(?,?,?,?,?,1,1)";
-            PreparedStatement ps = conn.prepareStatement(query);
+            String queryAkun = "INSERT INTO tb_akun(username,password) VALUES(?,?)";
+            PreparedStatement ps = conn.prepareStatement(queryAkun);
             ps.setString(1, username);
             ps.setString(2, password );
-            ps.setString(3, nama);
-            ps.setString(4, alamat);
-            ps.setString(5, noTelp);
             int hasil = ps.executeUpdate();
         }catch(SQLException e){
             Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
             }
         }
+    }
+    
+    public int getIdAkun(String username){
+        int id = 0;
+        if(conn != null){
+            try{
+                String query = "SELECT id_akun FROM tb_akun WHERE username = ?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    id = rs.getInt("id_akun");
+                    System.out.println(id);
+                }
+            }catch(SQLException e){
+                Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e); 
+            }
+        }
+        return id;
+    }
+    
+    public void validateRegisterPenyewa(String username){
+        if(conn != null){
+            try{
+                String query = "INSERT INTO tb_penyewa(id_akun,nama_lengkap,alamat,no_telepon) VALUES(?,?,?,?)";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, getIdAkun(username));
+                ps.setString(2, nama);
+                ps.setString(3, alamat);
+                ps.setString(4, noTelp);
+                int hasil = ps.executeUpdate();
+            }catch(SQLException e){
+                Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+    }
+    
+    public boolean cekAdmin(){
+        if(username.equals("admin") && password.equals(getMD5("admin")))return true;
+        else return false;
     }
     
     public boolean validateLogin(){
@@ -141,14 +178,18 @@ public class Autentikasi {
     public Penyewa current(){
         Penyewa penyewa = null;
         if(conn != null){
-            try{
-                String query = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";           
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, username);
-                ps.setString(2 , password);
-                ResultSet rs = ps.executeQuery();
-                if(rs.next()){
-                    penyewa = new Penyewa(rs.getInt("id_akun"),rs.getString("nama"),rs.getString("username"),rs.getString("password"),rs.getString("alamat"),rs.getString("no_telp"));                    
+            try{           
+                String queryAkun = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";
+                String queryPenyewa = "SELECT * FROM tb_penyewa WHERE id_penyewa = ?";  
+                PreparedStatement psPenyewa = conn.prepareStatement(queryPenyewa);
+                PreparedStatement psAkun = conn.prepareStatement(queryAkun);
+                psPenyewa.setString(1, username);
+                psAkun.setInt(1, getIdAkun(username));
+                psAkun.setString(2, password);
+                ResultSet rsPenyewa = psPenyewa.executeQuery();
+                ResultSet rsAkun = psAkun.executeQuery();
+                if(rsPenyewa.next() && rsAkun.next()){
+                    penyewa = new Penyewa(rsPenyewa.getInt("id_penyewa"),rsPenyewa.getString("nama_lengkap"),rsAkun.getString("username"),rsAkun.getString("password"),rsPenyewa.getString("alamat"),rsPenyewa.getString("no_telp"));                    
                 }
             }catch(SQLException e){
                 Logger.getLogger(JLogin.class.getName()).log(Level.SEVERE,null,e);

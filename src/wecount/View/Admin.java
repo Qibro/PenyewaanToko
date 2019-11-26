@@ -25,7 +25,6 @@ public class Admin extends javax.swing.JFrame {
         tbListLapak.setModel(tc.getModelLapak());
         tc.loadKolomPenyewa();
         tc.loadKolomLapak();
-        tc.loadPenyewa();
     }
     
     FungsiControl fc = new FungsiControl();
@@ -81,7 +80,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         tfEditHarga = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        btTambahLapak1 = new javax.swing.JButton();
+        btUbahLapak = new javax.swing.JButton();
         tfEditLebar = new javax.swing.JTextField();
         etcbLokasiLapak = new javax.swing.JComboBox<>();
         listPenyewa = new javax.swing.JPanel();
@@ -293,15 +292,20 @@ public class Admin extends javax.swing.JFrame {
 
         tbListLapak.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Lokasi", "Ukuran", "Harga Sewa", "Status"
+                "Lokasi", "Ukuran", "Harga Sewa", "Status", "ID"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tbListLapak);
 
         tambahLapak.setBackground(new java.awt.Color(0, 102, 102));
@@ -455,12 +459,17 @@ public class Admin extends javax.swing.JFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("/ Tahun");
 
-        btTambahLapak1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btTambahLapak1.setForeground(new java.awt.Color(255, 255, 255));
-        btTambahLapak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
-        btTambahLapak1.setText("Ubah");
-        btTambahLapak1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btTambahLapak1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btUbahLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btUbahLapak.setForeground(new java.awt.Color(255, 255, 255));
+        btUbahLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btUbahLapak.setText("Ubah");
+        btUbahLapak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btUbahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btUbahLapak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUbahLapakActionPerformed(evt);
+            }
+        });
 
         etcbLokasiLapak.setEditable(true);
         etcbLokasiLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -502,7 +511,7 @@ public class Admin extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(etcbLokasiLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btTambahLapak1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btUbahLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         editLapakLayout.setVerticalGroup(
@@ -526,7 +535,7 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
-                .addComponent(btTambahLapak1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btUbahLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -860,8 +869,11 @@ public class Admin extends javax.swing.JFrame {
         adminPanel.repaint();
         adminPanel.revalidate();
         
+        
         tc.loadLapak();
+        if(tc.getCountLapak() < 1){
         tc.showLapak();
+        }
     }//GEN-LAST:event_btnListLapakActionPerformed
 
     private void btnListPenyewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPenyewaActionPerformed
@@ -874,8 +886,7 @@ public class Admin extends javax.swing.JFrame {
         adminPanel.repaint();
         adminPanel.revalidate();
         
-        
-        
+        tc.loadPenyewa();
         tc.showPenyewa();
     }//GEN-LAST:event_btnListPenyewaActionPerformed
 
@@ -931,6 +942,13 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_etcbLokasiLapakActionPerformed
 
+    private void btUbahLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahLapakActionPerformed
+        int selectedRow = tbListPenyewa.getSelectedRow();
+        int idLapak = Integer.parseInt(tc.getModelLapak().getValueAt(selectedRow, 0).toString());
+        JOptionPane.showMessageDialog(this, idLapak);
+        
+    }//GEN-LAST:event_btUbahLapakActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -969,7 +987,7 @@ public class Admin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adminPanel;
     private javax.swing.JButton btTambahLapak;
-    private javax.swing.JButton btTambahLapak1;
+    private javax.swing.JButton btUbahLapak;
     private javax.swing.JButton btnListLapak;
     private javax.swing.JButton btnListPenyewa;
     private javax.swing.JButton btnListToko;

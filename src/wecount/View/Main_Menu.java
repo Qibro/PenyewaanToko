@@ -8,6 +8,7 @@ package wecount.View;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import wecount.Controller.Autentikasi;
+import wecount.Controller.TableControl;
 import wecount.Model.Penyewa;
 
 /**
@@ -23,18 +24,28 @@ public class Main_Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.auth = auth;
+        tbLapak.setModel(tc.getModelLapak());
+        tc.loadKolomLapak();
     }
+    
     
     public Main_Menu(Penyewa auth) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.auth = auth;
+        tbLapak.setModel(tc.getModelLapak());
+        tc.loadKolomLapak();
     }
+    
     
     public Main_Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        tbLapak.setModel(tc.getModelLapak());
+        tc.loadKolomLapak();
     }
+    
+    TableControl tc = new TableControl();
     
     
     /**
@@ -50,15 +61,14 @@ public class Main_Menu extends javax.swing.JFrame {
         btnToko = new javax.swing.JButton();
         btnSewa = new javax.swing.JButton();
         btnPengaturan = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         tokoSaya = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         sewaLapakToko = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tbLapak = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         pengaturan = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -119,28 +129,15 @@ public class Main_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(51, 51, 51));
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 204, 204));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
-        jButton6.setText("x");
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnLogOut.setText("Log Out");
+        btnLogOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        btnLogOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogOut.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
-        jButton2.setText("Log Out");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
 
@@ -151,14 +148,13 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(sidePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnPengaturan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnSewa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnSewa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(btnToko, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,10 +165,8 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addComponent(btnSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,36 +224,28 @@ public class Main_Menu extends javax.swing.JFrame {
         sewaLapakToko.setBackground(new java.awt.Color(51, 51, 51));
         sewaLapakToko.setForeground(new java.awt.Color(51, 51, 51));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tbLapak.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Lokasi", "Ukuran", "Harga", "Status", "Sewa"
+                "Lokasi", "Ukuran", "Harga", "Status"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable4.setRowHeight(50);
-        jTable4.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        jTable4.setSelectionForeground(new java.awt.Color(204, 204, 204));
-        jScrollPane4.setViewportView(jTable4);
+        ));
+        tbLapak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbLapak.setRowHeight(50);
+        tbLapak.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tbLapak.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        jScrollPane4.setViewportView(tbLapak);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
@@ -452,9 +438,11 @@ public class Main_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     Autentikasi auth = new Autentikasi();
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        dispose();
+        JLogin login = new JLogin();
+        login.setVisible(true);
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanActionPerformed
         // TODO add your handling code here:
@@ -476,6 +464,11 @@ public class Main_Menu extends javax.swing.JFrame {
         mainPanel.add(sewaLapakToko);
         mainPanel.repaint();
         mainPanel.revalidate();
+        
+        tc.loadLapak();
+        if(tc.getCountLapak() < 1){
+        tc.showLapak();
+        }
     }//GEN-LAST:event_btnSewaActionPerformed
 
     private void btnTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTokoActionPerformed
@@ -512,10 +505,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private void jOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOldPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jOldPasswordActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -554,12 +543,11 @@ public class Main_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPengaturan;
     private javax.swing.JButton btnSewa;
     private javax.swing.JButton btnToko;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -576,11 +564,11 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel pengaturan;
     private javax.swing.JPanel sewaLapakToko;
     private javax.swing.JPanel sidePanel;
+    private javax.swing.JTable tbLapak;
     private javax.swing.JPanel tokoSaya;
     // End of variables declaration//GEN-END:variables
 }
