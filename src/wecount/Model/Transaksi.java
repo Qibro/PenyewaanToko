@@ -17,9 +17,17 @@ public class Transaksi extends Toko{
     String tanggalTranskasi;
 
     public Transaksi(int idTransaksi,int idToko, int idPenyewa, String jumlahTransaksi, String tanggalTranskasi) {
+        super();
         this.idTransaksi = idTransaksi;
         this.idToko = idToko;
         this.idPenyewa = idPenyewa;
+        this.jumlahTransaksi = jumlahTransaksi;
+        this.tanggalTranskasi = tanggalTranskasi;
+    }
+    
+    public Transaksi(int idTransaksi,int idToko, String jumlahTransaksi, String tanggalTranskasi) {
+        this.idTransaksi = idTransaksi;
+        this.idToko = idToko;
         this.jumlahTransaksi = jumlahTransaksi;
         this.tanggalTranskasi = tanggalTranskasi;
     }

@@ -40,13 +40,11 @@ public class Penyewa extends AutentikasiControl{
     }
     
     
-    
-    
     public String getUsername() {
         return username;
     }
     
-    public int getIdPenyewa() {
+    public  int getIdPenyewa() {
         return idPenyewa;
     }
 
@@ -64,5 +62,10 @@ public class Penyewa extends AutentikasiControl{
 
     public ArrayList<Toko> getListToko() {
         return listToko;
-    }    
+    }
+
+    public static void main(String[] args) {
+        Penyewa r = new Penyewa(1,"nama","alamat","0922");
+        System.out.println(r.getIdPenyewa());
+    }
 }

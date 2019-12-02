@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import wecount.View.ViewAdmin;
 import wecount.View.ViewLogin;
+import wecount.View.ViewMainMenu;
 
 /**
  *
@@ -24,6 +25,7 @@ public class FungsiControl {
     public FungsiControl() {
         conn = KoneksiControl.koneksiDatabase();
     }
+    
     TableControl tc = new TableControl();
     
     public void ubahDataLapak(int id,String ukuran,String lokasi,String harga_sewa){
@@ -41,11 +43,11 @@ public class FungsiControl {
         }   
     }
 }
-    
+    //ubah
     public void tambahLapak(String ukuran,String lokasi,String harga_sewa){
         if(conn != null){
             try{
-                String query = "INSERT INTO tb_toko(lokasi,ukuran,harga_sewa) VALUES(?,?,?)";
+                String query = "INSERT INTO tb_toko(lokasi,ukuran,harga_sewa,durasi_sewa) VALUES(?,?,?,1)";//ubah
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, lokasi);
                 ps.setString(2, ukuran);
@@ -59,4 +61,43 @@ public class FungsiControl {
         }
       }
     }
+    //ubsh
+     public void sewaToko(int id_penyewa,int id_toko, String nama_toko, String durasi_sewa, String harga_sewa,String denda,int status_beli){
+        if(conn != null){
+            try{
+                //ubah
+                String query = "UPDATE tb_toko SET id_penyewa = ?,nama_toko = ?, durasi_sewa =?, harga_sewa = ?,sisa_pembayaran = ?, status_bayar = ?, status_beli = 1 WHERE id_toko = ?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, id_penyewa);
+                ps.setString(2, nama_toko);
+                ps.setString(3, durasi_sewa);//tambah
+                ps.setString(4, harga_sewa);
+                ps.setString(5, denda);
+                ps.setInt(6, status_beli);
+                ps.setInt(7, id_toko);
+
+                int hasil = ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Sewa Berhasil");
+            }catch(SQLException e){
+                Logger.getLogger(ViewMainMenu.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+    }
+     
+    
+    public void simpanTransaksi(int id_toko,int id_penyewa,String jumlah_transaksi,String date){
+         if(conn != null){
+             try{
+                 String query = "INSERT INTO tb_transaksi(id_toko,id_penyewa,jumlah_transaksi,tanggal_transaksi) VALUES(?,?,?,?)";
+                 PreparedStatement ps = conn.prepareStatement(query);
+                 ps.setInt(1, id_toko);
+                 ps.setInt(2, id_penyewa);
+                 ps.setString(3, jumlah_transaksi);
+                 ps.setString(4,date);
+                 int hasil = ps.executeUpdate();
+             }catch(SQLException e ){
+                 Logger.getLogger(ViewMainMenu.class.getName()).log(Level.SEVERE,null,e);
+             }
+         }
+     }
 }

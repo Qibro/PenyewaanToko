@@ -16,7 +16,7 @@ import wecount.Controller.TableControl;
 public class ViewAdmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form Admin
+     * Creates new form
      */
     public ViewAdmin() {
         initComponents();
@@ -24,9 +24,13 @@ public class ViewAdmin extends javax.swing.JFrame {
         tbListPenyewa.setModel(tc.getModelPenyewa());
         tbListLapak.setModel(tc.getModelLapak());
         tbListTransaksi.setModel(tc.getModelTransaksi());
+            tbListToko.setModel(tc.getModelToko());
         tc.loadKolomTransaksi();
         tc.loadKolomPenyewa();
         tc.loadKolomLapak();
+        tc.loadKolomToko();
+        tc.loadToko();
+        tc.showToko();
     }
     
     FungsiControl fc = new FungsiControl();
@@ -48,7 +52,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnListLapak = new javax.swing.JButton();
         btnListPenyewa = new javax.swing.JButton();
         btnListTransaksi = new javax.swing.JButton();
-        btnPengaturan = new javax.swing.JButton();
         btnPengaturan1 = new javax.swing.JButton();
         adminPanel = new javax.swing.JPanel();
         listToko = new javax.swing.JPanel();
@@ -93,22 +96,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbListTransaksi = new javax.swing.JTable();
-        pengaturanAdmin = new javax.swing.JPanel();
-        dataAdmin = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        tfAdminUname = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JPasswordField();
-        ubahPassword = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        tfJawaban = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        tfPassBaru = new javax.swing.JPasswordField();
-        jLabel26 = new javax.swing.JLabel();
-        tfConfPass = new javax.swing.JPasswordField();
-        btnUbahPass = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,10 +109,10 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnListToko.setBackground(new java.awt.Color(51, 51, 51));
         btnListToko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnListToko.setForeground(new java.awt.Color(204, 204, 204));
-        btnListToko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnListToko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btnListToko.setText("List Toko");
         btnListToko.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnListToko.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnListToko.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btnListToko.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListTokoActionPerformed(evt);
@@ -135,10 +122,10 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnListLapak.setBackground(new java.awt.Color(51, 51, 51));
         btnListLapak.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnListLapak.setForeground(new java.awt.Color(204, 204, 204));
-        btnListLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnListLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btnListLapak.setText("List Lapak");
         btnListLapak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnListLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnListLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btnListLapak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListLapakActionPerformed(evt);
@@ -148,10 +135,10 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnListPenyewa.setBackground(new java.awt.Color(51, 51, 51));
         btnListPenyewa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnListPenyewa.setForeground(new java.awt.Color(204, 204, 204));
-        btnListPenyewa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnListPenyewa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btnListPenyewa.setText("List Penyewa");
         btnListPenyewa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnListPenyewa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnListPenyewa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btnListPenyewa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListPenyewaActionPerformed(evt);
@@ -161,36 +148,23 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnListTransaksi.setBackground(new java.awt.Color(51, 51, 51));
         btnListTransaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnListTransaksi.setForeground(new java.awt.Color(204, 204, 204));
-        btnListTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnListTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btnListTransaksi.setText("List Transaksi");
         btnListTransaksi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnListTransaksi.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnListTransaksi.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btnListTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListTransaksiActionPerformed(evt);
             }
         });
 
-        btnPengaturan.setBackground(new java.awt.Color(51, 51, 51));
-        btnPengaturan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnPengaturan.setForeground(new java.awt.Color(204, 204, 204));
-        btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
-        btnPengaturan.setText("Pengaturan");
-        btnPengaturan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPengaturan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
-        btnPengaturan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPengaturanActionPerformed(evt);
-            }
-        });
-
         btnPengaturan1.setBackground(new java.awt.Color(51, 51, 51));
         btnPengaturan1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPengaturan1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPengaturan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btnPengaturan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btnPengaturan1.setText("LOG OUT");
         btnPengaturan1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPengaturan1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btnPengaturan1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btnPengaturan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPengaturan1ActionPerformed(evt);
@@ -209,7 +183,6 @@ public class ViewAdmin extends javax.swing.JFrame {
                     .addComponent(btnListLapak, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnListPenyewa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnListTransaksi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnPengaturan1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -226,9 +199,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addComponent(btnListPenyewa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(61, 61, 61)
                 .addComponent(btnPengaturan1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -350,10 +321,10 @@ public class ViewAdmin extends javax.swing.JFrame {
 
         btTambahLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btTambahLapak.setForeground(new java.awt.Color(255, 255, 255));
-        btTambahLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btTambahLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btTambahLapak.setText("Tambahkan");
         btTambahLapak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btTambahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btTambahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btTambahLapak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTambahLapakActionPerformed(evt);
@@ -466,10 +437,10 @@ public class ViewAdmin extends javax.swing.JFrame {
 
         btUbahLapak.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btUbahLapak.setForeground(new java.awt.Color(255, 255, 255));
-        btUbahLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
+        btUbahLapak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87) - Copy.png"))); // NOI18N
         btUbahLapak.setText("Ubah");
         btUbahLapak.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btUbahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
+        btUbahLapak.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/Screenshot (87).png"))); // NOI18N
         btUbahLapak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btUbahLapakActionPerformed(evt);
@@ -678,163 +649,6 @@ public class ViewAdmin extends javax.swing.JFrame {
 
         adminPanel.add(listTransaksi, "card2");
 
-        pengaturanAdmin.setBackground(new java.awt.Color(0, 102, 102));
-
-        dataAdmin.setBackground(new java.awt.Color(0, 102, 102));
-        dataAdmin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATA ADMIN", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Username :");
-
-        tfAdminUname.setBackground(new java.awt.Color(0, 102, 102));
-        tfAdminUname.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tfAdminUname.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel21.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Password :");
-
-        tfPassword.setBackground(new java.awt.Color(0, 102, 102));
-        tfPassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tfPassword.setForeground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout dataAdminLayout = new javax.swing.GroupLayout(dataAdmin);
-        dataAdmin.setLayout(dataAdminLayout);
-        dataAdminLayout.setHorizontalGroup(
-            dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataAdminLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20))
-                .addGap(10, 10, 10)
-                .addGroup(dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfAdminUname)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-        dataAdminLayout.setVerticalGroup(
-            dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataAdminLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(tfAdminUname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-
-        ubahPassword.setBackground(new java.awt.Color(0, 102, 102));
-        ubahPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "UBAH PASSWORD", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jLabel22.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Siapa nama lengkap salah satu pembuat We Count?");
-
-        jLabel23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Jawab : ");
-
-        jLabel24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setText("Password");
-
-        jLabel25.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Silahkan Masukkan Password Baru Anda");
-
-        tfPassBaru.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tfPassBaru.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel26.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Confirm Password");
-
-        tfConfPass.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tfConfPass.setForeground(new java.awt.Color(255, 255, 255));
-
-        btnUbahPass.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnUbahPass.setForeground(new java.awt.Color(255, 255, 255));
-        btnUbahPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87).png"))); // NOI18N
-        btnUbahPass.setText("UBAH");
-        btnUbahPass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUbahPass.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Screenshot (87) - Copy.png"))); // NOI18N
-
-        javax.swing.GroupLayout ubahPasswordLayout = new javax.swing.GroupLayout(ubahPassword);
-        ubahPassword.setLayout(ubahPasswordLayout);
-        ubahPasswordLayout.setHorizontalGroup(
-            ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ubahPasswordLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ubahPasswordLayout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfJawaban, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ubahPasswordLayout.createSequentialGroup()
-                        .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfPassBaru, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfConfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUbahPass, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        ubahPasswordLayout.setVerticalGroup(
-            ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ubahPasswordLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(tfJawaban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel25)
-                .addGap(18, 18, 18)
-                .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tfPassBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ubahPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel26)
-                    .addComponent(tfConfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnUbahPass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pengaturanAdminLayout = new javax.swing.GroupLayout(pengaturanAdmin);
-        pengaturanAdmin.setLayout(pengaturanAdminLayout);
-        pengaturanAdminLayout.setHorizontalGroup(
-            pengaturanAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pengaturanAdminLayout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addGroup(pengaturanAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ubahPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dataAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(263, Short.MAX_VALUE))
-        );
-        pengaturanAdminLayout.setVerticalGroup(
-            pengaturanAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pengaturanAdminLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(dataAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ubahPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
-
-        adminPanel.add(pengaturanAdmin, "card6");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -862,6 +676,9 @@ public class ViewAdmin extends javax.swing.JFrame {
         adminPanel.add(listToko);
         adminPanel.repaint();
         adminPanel.revalidate();
+        
+        tc.loadToko();
+        tc.showToko();
     }//GEN-LAST:event_btnListTokoActionPerformed
 
     private void btnListLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListLapakActionPerformed
@@ -906,18 +723,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         tc.showTransaksi();
     }//GEN-LAST:event_btnListTransaksiActionPerformed
 
-    private void btnPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanActionPerformed
-        // TODO add your handling code here:
-        adminPanel.removeAll();
-        adminPanel.repaint();
-        adminPanel.revalidate();
-
-        adminPanel.add(pengaturanAdmin);
-        adminPanel.repaint();
-        adminPanel.revalidate();
-        
-    }//GEN-LAST:event_btnPengaturanActionPerformed
-
     private void btnPengaturan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturan1ActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -928,7 +733,7 @@ public class ViewAdmin extends javax.swing.JFrame {
     private void cbLokasiLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLokasiLapakActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbLokasiLapakActionPerformed
-
+    
     private void btTambahLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTambahLapakActionPerformed
         String lokasi = cbLokasiLapak.getSelectedItem().toString();
         String uPanjang = tfUkuranPanjang.getText();
@@ -939,6 +744,8 @@ public class ViewAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Isi field yang masih kosong !");
         }else{
             fc.tambahLapak(ukuran, lokasi, hargaSewa);
+            tc.loadLapak();
+            tc.showLapak();
         }
     }//GEN-LAST:event_btTambahLapakActionPerformed
 
@@ -948,9 +755,9 @@ public class ViewAdmin extends javax.swing.JFrame {
 
     private void btUbahLapakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahLapakActionPerformed
         int id = 0;
+        try{
         int selectedRow = tbListLapak.getSelectedRow();
         id = Integer.parseInt(tc.getModelLapak().getValueAt(selectedRow, 0).toString());
-        System.out.println(id);
         String lokasi = etcbLokasiLapak.getSelectedItem().toString();
         String uPanjang = tfEditPanjang.getText();
         String uLebar = tfEditLebar.getText();
@@ -963,6 +770,9 @@ public class ViewAdmin extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Data berhasil diubah");
            tc.loadLapak();
            tc.showLapak();
+        }
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this, "Pilih lapak yang ingin diubah");
         }
     }//GEN-LAST:event_btUbahLapakActionPerformed
 
@@ -1010,11 +820,8 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnListPenyewa;
     private javax.swing.JButton btnListToko;
     private javax.swing.JButton btnListTransaksi;
-    private javax.swing.JButton btnPengaturan;
     private javax.swing.JButton btnPengaturan1;
-    private javax.swing.JButton btnUbahPass;
     private javax.swing.JComboBox<String> cbLokasiLapak;
-    private javax.swing.JPanel dataAdmin;
     private javax.swing.JPanel editLapak;
     private javax.swing.JComboBox<String> etcbLokasiLapak;
     private javax.swing.JLabel jLabel1;
@@ -1028,13 +835,6 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1051,24 +851,17 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel listPenyewa;
     private javax.swing.JPanel listToko;
     private javax.swing.JPanel listTransaksi;
-    private javax.swing.JPanel pengaturanAdmin;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JPanel tambahLapak;
     private javax.swing.JTable tbListLapak;
     private javax.swing.JTable tbListPenyewa;
     private javax.swing.JTable tbListToko;
     private javax.swing.JTable tbListTransaksi;
-    private javax.swing.JTextField tfAdminUname;
-    private javax.swing.JPasswordField tfConfPass;
     private javax.swing.JTextField tfEditHarga;
     private javax.swing.JTextField tfEditLebar;
     private javax.swing.JTextField tfEditPanjang;
     private javax.swing.JTextField tfHargaLapak;
-    private javax.swing.JTextField tfJawaban;
-    private javax.swing.JPasswordField tfPassBaru;
-    private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUkuranLebar;
     private javax.swing.JTextField tfUkuranPanjang;
-    private javax.swing.JPanel ubahPassword;
     // End of variables declaration//GEN-END:variables
 }

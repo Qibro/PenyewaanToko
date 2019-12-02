@@ -33,8 +33,6 @@ public class ViewLogin extends javax.swing.JFrame {
         conn = KoneksiControl.koneksiDatabase();
         auth = new AutentikasiControl();
         LocalDate date = LocalDate.now();
-        String hari = date.toString();
-        JOptionPane.showMessageDialog(this, date);
     }
     
     Connection conn;
@@ -376,13 +374,11 @@ public class ViewLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Username sudah ada !");
             tfUsername.setText("");
         }else if(!noTelp.matches(telpPatt)){
-            JOptionPane.showMessageDialog(this, "Nomor telfon tidak valid !\nMIin : 10 Angka");
+            JOptionPane.showMessageDialog(this, "Nomor telfon tidak valid !\nNomor telepon harus 12 Angka");
         }else if(!nama.matches(namePatt)){
             JOptionPane.showMessageDialog(this, "Nama tidak valid !");
         }else if(!username.matches(unamePatt)){
             JOptionPane.showMessageDialog(this, "Username tidak valid !");
-        }else if(!alamat.matches(unamePatt)){
-            JOptionPane.showMessageDialog(this, "Alamat tidak valid !");
         }else{
             AutentikasiControl regist = new AutentikasiControl(nama,username,password,alamat,noTelp);
             regist.validateRegisterAkun();
@@ -411,9 +407,8 @@ public class ViewLogin extends javax.swing.JFrame {
             }else{
                 Penyewa penyewa = auth.current();
                 if(auth.validateLogin()){    
-                    JOptionPane.showMessageDialog(this, "Login Berhasil");
                     dispose();
-                    ViewMainMenu menu = new ViewMainMenu(penyewa);
+                    ViewMainMenu menu = new ViewMainMenu(penyewa,auth);
                     menu.setVisible(true);
                     menu.setLocationRelativeTo(null);
                 }else{

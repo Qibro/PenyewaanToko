@@ -181,19 +181,23 @@ public class AutentikasiControl {
     public Penyewa current(){
         Penyewa penyewa = null;
         if(conn != null){
-            try{           
-                String queryAkun = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";
-                String queryPenyewa = "SELECT * FROM tb_penyewa WHERE id_penyewa = ?";  
+            try{
+                String queryAkun = "SELECT * FROM tb_akun WHERE username = ?";
+                String queryPenyewa = "SELECT * FROM tb_penyewa WHERE id_akun = ?";  
                 PreparedStatement psPenyewa = conn.prepareStatement(queryPenyewa);
                 PreparedStatement psAkun = conn.prepareStatement(queryAkun);
-                psPenyewa.setString(1, username);
-                psAkun.setInt(1, getIdAkun(username));
-                psAkun.setString(2, password);
-                ResultSet rsPenyewa = psPenyewa.executeQuery();
+                psAkun.setString(1, username);
                 ResultSet rsAkun = psAkun.executeQuery();
-                if(rsPenyewa.next() && rsAkun.next()){
-                    penyewa = new Penyewa(rsPenyewa.getInt("id_penyewa"),rsPenyewa.getString("nama_lengkap"),rsAkun.getString("username"),rsAkun.getString("password"),rsPenyewa.getString("alamat"),rsPenyewa.getString("no_telp"));                    
+                if(rsAkun.next()){
+                    System.out.println(rsAkun.getInt("id_akun"));
+                    psPenyewa.setInt(1, rsAkun.getInt("id_akun"));
+                    ResultSet rsPenyewa = psPenyewa.executeQuery(); 
+                        if(rsPenyewa.next()){
+                            System.out.println("test");
+                        penyewa = new Penyewa(rsPenyewa.getInt("id_penyewa"),rsPenyewa.getString("nama_lengkap"),rsAkun.getString("username"),rsAkun.getString("password"),rsPenyewa.getString("alamat"),rsPenyewa.getString("no_telepon"));                    
+                    }
                 }
+                
             }catch(SQLException e){
                 Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE,null,e);
             }
