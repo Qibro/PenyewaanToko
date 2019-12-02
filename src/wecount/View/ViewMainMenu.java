@@ -90,6 +90,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tbToko = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
+        btnSewa1 = new javax.swing.JButton();
         sewaLapakToko = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbLapak = new javax.swing.JTable();
@@ -121,8 +122,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         lBayarSisa = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        lTanggalBayar = new javax.swing.JLabel();
         cbMetodeBayar = new javax.swing.JComboBox<>();
         btnPilihLapak = new javax.swing.JButton();
         transaksiSaya = new javax.swing.JPanel();
@@ -300,15 +299,28 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("LIST TOKO SAYA");
 
+        btnSewa1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSewa1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSewa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wecount/View/img/Capture.JPG"))); // NOI18N
+        btnSewa1.setText("Lunasi");
+        btnSewa1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSewa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSewa1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tokoSayaLayout = new javax.swing.GroupLayout(tokoSaya);
         tokoSaya.setLayout(tokoSayaLayout);
         tokoSayaLayout.setHorizontalGroup(
             tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tokoSayaLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                .addGroup(tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSewa1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tokoSayaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         tokoSayaLayout.setVerticalGroup(
@@ -317,8 +329,10 @@ public class ViewMainMenu extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSewa1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         mainPanel.add(tokoSaya, "card2");
@@ -475,14 +489,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
         lBayarSisa.setForeground(new java.awt.Color(255, 255, 255));
         lBayarSisa.setText("300000");
 
-        jLabel25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Terakhir Bayar");
-
-        lTanggalBayar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lTanggalBayar.setForeground(new java.awt.Color(255, 255, 255));
-        lTanggalBayar.setText("Tanggal Terakhir Penyewa Harus Bayar");
-
         cbMetodeBayar.setBackground(new java.awt.Color(51, 51, 51));
         cbMetodeBayar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cbMetodeBayar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Langsung", "Setengahnya" }));
@@ -539,28 +545,23 @@ public class ViewMainMenu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cbMetodeBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel16))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lBayarSekarang)
+                                    .addComponent(lTotalBayar))
+                                .addGap(80, 80, 80)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel21)
-                                            .addComponent(jLabel16))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lBayarSekarang)
-                                            .addComponent(lTotalBayar))
-                                        .addGap(82, 82, 82)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel23)
-                                            .addComponent(jLabel25))))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lTanggalBayar)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel23)
+                                        .addGap(46, 46, 46)
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lBayarSisa)))))
@@ -603,30 +604,28 @@ public class ViewMainMenu extends javax.swing.JFrame {
                             .addComponent(cbMetodeBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel23)
+                                    .addComponent(lBayarSisa)
+                                    .addComponent(jLabel24))
+                                .addGap(15, 15, 15))
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addComponent(jLabel17)
                                     .addComponent(lTotalBayar)
                                     .addComponent(jLabel16))
-                                .addGap(9, 9, 9))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel24)
-                                    .addComponent(lBayarSisa))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(lTanggalBayar)
-                            .addComponent(jLabel25)))
+                                .addGap(25, 25, 25))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lBayarSekarang)
                             .addComponent(jLabel22)
-                            .addComponent(jLabel21))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel21))
+                        .addGap(16, 16, 16)))
                 .addComponent(btnSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -652,7 +651,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         sewaLapakTokoLayout.setVerticalGroup(
             sewaLapakTokoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,6 +1035,30 @@ public class ViewMainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbMetodeBayarActionPerformed
 
+    private void btnSewa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSewa1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            int selectedRow = tbToko.getSelectedRow();
+            int id_toko = Integer.parseInt(tbToko.getValueAt(selectedRow, 0).toString());
+            int id_penyewa = Integer.parseInt(tbToko.getValueAt(selectedRow, 7).toString());
+            String pembayaran = tbToko.getValueAt(selectedRow,3).toString();
+            LocalDate ld = LocalDate.now();
+            String date = ld.toString();
+ 
+            String lunas = tbToko.getValueAt(selectedRow, 8).toString();
+            if(lunas.equals("Lunas"))JOptionPane.showMessageDialog(this, "Toko sudah lunas !");
+            else{
+                fc.lunasiToko(id_toko);
+                fc.simpanTransaksi(id_toko,id_penyewa ,pembayaran , date);
+                JOptionPane.showMessageDialog(this, "Proses pembayaran berhasil !, Toko sudah lunas");
+                tc.loadToko();
+                tc.showToko();
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Pilih toko");
+        }
+    }//GEN-LAST:event_btnSewa1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1079,6 +1102,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnPengaturan;
     private javax.swing.JButton btnPilihLapak;
     private javax.swing.JButton btnSewa;
+    private javax.swing.JButton btnSewa1;
     private javax.swing.JButton btnSewaLapak;
     private javax.swing.JButton btnToko;
     private javax.swing.JComboBox<String> cbDurasi;
@@ -1100,7 +1124,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1125,7 +1148,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lHargaSewa;
     private javax.swing.JLabel lLokasi;
     private javax.swing.JLabel lNama;
-    private javax.swing.JLabel lTanggalBayar;
     private javax.swing.JLabel lTotalBayar;
     private javax.swing.JLabel lUkuran;
     private javax.swing.JPanel mainPanel;

@@ -100,4 +100,18 @@ public class FungsiControl {
              }
          }
      }
+    
+     public void lunasiToko(int id_toko){
+         if(conn != null){
+             try{
+                 String query = "UPDATE  tb_toko set sisa_pembayaran = 0 ,status_bayar = 1 WHERE id_toko = ?";
+                 PreparedStatement ps = conn.prepareStatement(query);
+                 ps.setInt(1, id_toko);
+                 int hasil = ps.executeUpdate();
+             }catch(SQLException e ){
+                 Logger.getLogger(ViewMainMenu.class.getName()).log(Level.SEVERE,null,e);
+             }
+         }
+     }
+     
 }
